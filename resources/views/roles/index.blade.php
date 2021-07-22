@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a class="text-success" href="{{ route('user.create') }}">&plus; Cadastrar usuário</a>
+                        <a class="text-success" href="{{ route('role.create') }}">&plus; Cadastrar Perfil</a>
 
                         @if($errors)
                             @foreach($errors->all() as $error)
@@ -28,20 +28,20 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Usuário</th>
+                                <th>Perfil</th>
                                 <th>Ações</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                           @foreach($users as $user)
+                           @foreach($roles as $role)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{$role->name}}</td>
                                     <td class="d-flex">
-                                        <a class="mr-3 btn btn-sm btn-outline-success" href="{{route('user.edit', [$user])}}">Editar</a>
+                                        <a class="mr-3 btn btn-sm btn-outline-success" href="{{route('role.edit', [$role])}}">Editar</a>
                                         <a class="mr-3 btn btn-sm btn-outline-info" href="">Perfis</a>
-                                        <form action="{{route('user.destroy', [$user])}}" method="post">
+                                        <form action="{{route('role.destroy', [$role])}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <input class="btn btn-sm btn-outline-danger" type="submit" value="Remover">
