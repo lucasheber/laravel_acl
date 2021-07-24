@@ -101,6 +101,15 @@ class RoleController extends Controller
     public function permissions(Role $role)
     {
        $permissions  = Permission::all();
+
+       foreach($permissions as $permission) {
+           if ($role->hasPermissionTo($permission->id)) {
+               $permission->can = true;
+           } else {
+               $permission->can = false;
+           }
+       }
+
        return view('roles.permissions', compact('role', 'permissions'));
     }
 
@@ -109,6 +118,18 @@ class RoleController extends Controller
      */
     public function permissionsSync(Request $request, Role $role)
     {
+        $permissionsRequest = $request->except(['_token', '_method']);
 
+        foreach($permissionsRequest as $key => $value) {
+            $permissions[] = Permission::findById($key);
+        }
+
+        if (!empty($permissions)) {
+            $role->syncPermissions($permissions);
+        } else {
+            $role->syncPermissions(null);
+        }
+
+        return redirect()->route('role.permissions', compact('role'));
     }
 }

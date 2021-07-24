@@ -21,13 +21,13 @@
 
                         <h2 class="mt-4">Permissões para: {{ $role->name }} </h2>
 
-                        <form action="" method="post" class="mt-4" autocomplete="off">
+                        <form action="{{ route('role.permissionsSync', $role) }}" method="post" class="mt-4" autocomplete="off">
                             @csrf
                             @method('PUT')
 
                             @foreach ($permissions as $permission)
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="{{ $permission->id }}"
+                                    <input {{ $permission->can ? 'checked' : '' }} type="checkbox" class="custom-control-input" id="{{ $permission->id }}"
                                         name="{{ $permission->id }}">
                                     <label class="custom-control-label"
                                         for="{{ $permission->id }}">{{ $permission->name }}</label>
