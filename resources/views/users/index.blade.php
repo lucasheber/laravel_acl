@@ -40,7 +40,7 @@
                                     <td>{{$user->name}}</td>
                                     <td class="d-flex">
                                         <a class="mr-3 btn btn-sm btn-outline-success" href="{{route('user.edit', [$user])}}">Editar</a>
-                                        <a class="mr-3 btn btn-sm btn-outline-info" href="">Perfis</a>
+                                        <a class="mr-3 btn btn-sm btn-outline-info" href="{{ route('user.roles', [$user]) }}">Perfis</a>
                                         <form action="{{route('user.destroy', [$user])}}" method="post">
                                             @csrf
                                             @method('delete')
