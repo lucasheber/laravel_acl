@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -91,5 +93,22 @@ class RoleController extends Controller
     {
         $role->delete();
         return redirect()->route('role.index');
+    }
+
+    /**
+     * Display the permissions of the an especific role
+     */
+    public function permissions(Role $role)
+    {
+       $permissions  = Permission::all();
+       return view('roles.permissions', compact('role', 'permissions'));
+    }
+
+    /**
+     *
+     */
+    public function permissionsSync(Request $request, Role $role)
+    {
+
     }
 }

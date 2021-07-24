@@ -24,7 +24,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('user', UserController::class);
+
+Route::get('role/{role}/permissions', [RoleController::class, 'permissions'])->name('role.permissions');
+Route::put('role/{role}/permissions/sync', [RoleController::class, 'permissionsSync'])->name('role.sync');
 
 Route::resource('role', RoleController::class);
 
