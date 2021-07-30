@@ -105,7 +105,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the permissions of the an especific role
+     * Display the permissions of the an specific role
      */
     public function roles(User $user)
     {
@@ -129,6 +129,7 @@ class UserController extends Controller
     {
         $rolesRequest = $request->except(['_token', '_method']);
 
+        /** @var mixed $value */
         foreach($rolesRequest as $key => $value) {
             $roles[] = Role::findById($key);
         }
