@@ -15,4 +15,8 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+    
+    public function test_soma_10_mais_10() {
+        $this->assertEquals(20, 10 + 10, "Lucas Heber");
+    }
 }
