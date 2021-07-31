@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,7 +37,9 @@ Route::resource('role', RoleController::class);
 Route::resource('permission', PermissionController::class);
 
 /** posts routes */
-Route::get('/post', [PostController::class, 'index'])->name('post.index');
+Route::get('/post', [PostController::class, 'index'])
+    ->name('post.index')
+    ->middleware(['role_or_permission:Listagem de artigos']);
 
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');

@@ -30,6 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->hasPermissionTo('Cadastrar artigo')) {
+            throw new UnauthorizedException(403);
+        }
         return view('posts.create');
     }
 
