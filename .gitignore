@@ -13,5 +13,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+nbproject/
 /nbproject/private/
 .DS_Store
+*.zip
+nbproject/project.xml

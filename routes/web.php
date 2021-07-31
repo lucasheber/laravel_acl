@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -36,13 +37,13 @@ Route::resource('role', RoleController::class);
 Route::resource('permission', PermissionController::class);
 
 /** posts routes */
-Route::get('/post', 'PostController@index')->name('post.index');
+Route::get('/post', [PostController::class, 'index'])->name('post.index');
 
-Route::get('/post/create', 'PostController@create')->name('post.create');
-Route::post('/post', 'PostController@store')->name('post.store');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
-Route::match(['put', 'patch'], '/post/{post}', 'PostController@update')->name('post.update');
+Route::match(['put', 'patch'], '/post/{post}', [PostController::class, 'update'])->name('post.update');
 
-Route::get('/post/{post}', 'PostController@show')->name('post.show');
-Route::delete('/post/{post}', 'PostController@destroy')->name('post.destroy');
-Route::get('/post/{post}/edit', 'PostController@edit')->name('post.edit');
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');

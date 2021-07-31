@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Exceptions\UnauthorizedException;
@@ -45,7 +45,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
 
-        if(!empty($request->published)) {
+        if(isset($request->published)) {
             $post->published = $request->published;
         }
 
